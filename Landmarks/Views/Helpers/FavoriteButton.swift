@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    @State var isSet: Bool
-    let onFavoriteChange: (_ isFavotire: Bool) -> ()
+    @Binding var isSet: Bool
     
     var body: some View {
         Button(action: {
             isSet.toggle()
-            onFavoriteChange(isSet)
         }) {
             Image(systemName: isSet ? "star.fill" : "star")
-                .renderingMode(.original)
+                .foregroundColor(isSet ? Color.yellow : Color.gray)
         }
     }
 }
@@ -25,8 +23,8 @@ struct FavoriteButton: View {
 struct FavoriteButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FavoriteButton(isSet: true) {_ in }
-            FavoriteButton(isSet: false) {_ in }
+            FavoriteButton(isSet: .constant(true))
+            FavoriteButton(isSet: .constant(false))
         }
         .previewLayout(.sizeThatFits)
     }

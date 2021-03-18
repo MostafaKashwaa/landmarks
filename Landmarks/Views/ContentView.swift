@@ -21,5 +21,6 @@ struct ContentView_Previews: PreviewProvider {
                 .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
         }
         .previewDevice("iPhone 12")
+        .environmentObject(ModelData())
     }
 }

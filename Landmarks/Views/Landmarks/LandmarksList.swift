@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct LandmarksList: View {
-    @StateObject private var modelData = ModelData()
+    @EnvironmentObject var modelData: ModelData
     @State private var showFavoriteOnly = false
     
     var filterdLandmarks: [Landmark] {
-        $modelData.landmarks.wrappedValue.filter { landmark in
+        modelData.landmarks.filter { landmark in
             !showFavoriteOnly || landmark.isFavorite
         }
     }
@@ -24,10 +24,7 @@ struct LandmarksList: View {
                     Text("Favorites only")
                 }
                 ForEach(filterdLandmarks) { item in
-                    let index = modelData.landmarks.firstIndex(where: {$0.id == item.id})
-                    NavigationLink(destination: LandmarkDetails(landmark: item) { isFavorite in
-                            modelData.landmarks[index!].isFavorite = isFavorite
-                        }) {
+                    NavigationLink(destination: LandmarkDetails(landmark: item)) {
                         LandmarkRow(landmark: item)
                     }
                 }

@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct LandmarkDetails: View {
+    @EnvironmentObject var modelData: ModelData
     var landmark: Landmark
-    let onToggleFavorite: (_ isFavotire: Bool) -> ()
+    
+    var landmarkIndex: Int {
+        modelData.landmarks.firstIndex(where: {$0.id == landmark.id})!
+    }
     
     var body: some View {
         ScrollView {
@@ -27,7 +31,7 @@ struct LandmarkDetails: View {
                         .font(.title)
                         .foregroundColor(.primary)
                     Spacer()
-                    FavoriteButton(isSet: landmark.isFavorite, onFavoriteChange: onToggleFavorite)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
                 }
                 
                 HStack {
@@ -52,7 +56,7 @@ struct LandmarkDetails: View {
 
 struct LandmarkDetails_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkDetails(landmark: ModelData().landmarks[0]) {_ in }
+        LandmarkDetails(landmark: ModelData().landmarks[0])
             .previewDevice("iPhone 11 Pro")
     }
 }
