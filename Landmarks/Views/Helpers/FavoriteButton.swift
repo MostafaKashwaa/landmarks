@@ -18,6 +18,7 @@ struct FavoriteButton: View {
                 .foregroundColor(isSet ? Color.yellow : Color.gray)
         }
     }
+
 }
 
 struct FavoriteButton_Previews: PreviewProvider {

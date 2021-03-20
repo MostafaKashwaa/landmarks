@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Badge: View {
-    static let rotationCount = 11
+    static let rotationCount = 9
     var badgeSymbols: some View {
         ForEach(0..<Badge.rotationCount) { i in
             RotatedBadgeSymbol(

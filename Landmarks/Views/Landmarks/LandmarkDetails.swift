@@ -51,7 +51,12 @@ struct LandmarkDetails: View {
         }
         .navigationTitle(landmark.name)
         .navigationBarTitleDisplayMode(.inline)
+//        .eraseToAnyView()
     }
+
+//    #if DEBUG
+//    @ObservedObject var iO = injectionObserver
+//    #endif
 }
 
 struct LandmarkDetails_Previews: PreviewProvider {
